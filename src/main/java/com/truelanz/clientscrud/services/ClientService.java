@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.truelanz.clientscrud.dto.ClientDTO;
 import com.truelanz.clientscrud.entities.Client;
 import com.truelanz.clientscrud.repositories.ClientRepository;
+import com.truelanz.clientscrud.services.exceptions.ResourceNotFoundException;
 
 
 
@@ -28,7 +29,8 @@ public class ClientService {
     //busca por ID
     @Transactional(readOnly = true)
     public ClientDTO findById(Long id) {
-        Client client = clientRepository.findById(id).get();
+        Client client = clientRepository.findById(id).orElseThrow(
+            () -> new ResourceNotFoundException("Resource not found"));
         return new ClientDTO(client);
     }
 
