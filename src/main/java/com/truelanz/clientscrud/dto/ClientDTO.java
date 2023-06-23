@@ -2,6 +2,8 @@ package com.truelanz.clientscrud.dto;
 
 import java.time.LocalDate;
 
+import com.truelanz.clientscrud.entities.Client;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -16,7 +18,7 @@ public class ClientDTO {
     private LocalDate birthDate;
     private Integer children;
 
-    public ClientDTO(ClientDTO entity) {
+    public ClientDTO(Client entity) {
         id = entity.getId();
         name = entity.getName();
         cpf = entity.getCpf();
