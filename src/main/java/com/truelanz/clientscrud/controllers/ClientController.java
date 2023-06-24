@@ -16,6 +16,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.truelanz.clientscrud.dto.ClientDTO;
 import com.truelanz.clientscrud.services.ClientService;
+
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.PutMapping;
 
 
@@ -42,15 +45,16 @@ public class ClientController {
 
     // inserir dados
     @PostMapping
-    public ResponseEntity<ClientDTO> insert(@RequestBody ClientDTO dto) {
+    public ResponseEntity<ClientDTO> insert(@Valid @RequestBody ClientDTO dto) {
         dto = clientService.insert(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
             .buildAndExpand(dto.getId()).toUri();
         return ResponseEntity.created(uri).body(dto);
     }
 
+    // atualizar dados
     @PutMapping(value = "/{id}")
-    public ResponseEntity<ClientDTO> update(@PathVariable Long id, @RequestBody ClientDTO dto) {
+    public ResponseEntity<ClientDTO> update(@PathVariable Long id, @Valid @RequestBody ClientDTO dto) {
         dto = clientService.update(id, dto);
         return ResponseEntity.ok(dto);
     }

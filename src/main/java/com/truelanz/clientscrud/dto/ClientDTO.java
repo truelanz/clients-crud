@@ -4,6 +4,9 @@ import java.time.LocalDate;
 
 import com.truelanz.clientscrud.entities.Client;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -12,8 +15,13 @@ import lombok.Getter;
 public class ClientDTO {
 
     private Long id;
+    @Size(min = 3, max = 50, message = "o campo deve ter de 3 a 50 caracteres")
+    @NotBlank(message = "Campo requerido")
     private String name;
+    @Size(min = 11, max = 11, message = "O cpf deve ter 11 números")
+    @NotBlank(message = "Campo requerido")
     private String cpf;
+    @Positive(message = "O valor deve ser positivo")
     private Double income;
     private LocalDate birthDate;
     private Integer children;
