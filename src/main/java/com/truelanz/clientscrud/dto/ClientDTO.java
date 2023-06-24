@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import com.truelanz.clientscrud.entities.Client;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -23,6 +25,8 @@ public class ClientDTO {
     private String cpf;
     @Positive(message = "O valor deve ser positivo")
     private Double income;
+    @NotNull(message = "Campo obrigatório")
+    @Past(message = "A data de aniversário deve ser anterior à data atual")
     private LocalDate birthDate;
     private Integer children;
 
